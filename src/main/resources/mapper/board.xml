@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tenco.bank.repository.interfaces.BoardRepository">
+	<insert id="insert">
+		insert into board(title,content,author) 
+		values(#{title}, #{content}, #{author})
+	</insert>
+	
+	<select id ="findAll" resultType="com.tenco.bank.model.Board">
+		select * from board 
+		limit #{limit} offset #{offset}
+	</select>
+	
+	<select id ="findById" resultType="com.tenco.bank.model.Board">
+		select * from board where id = #{id}
+	</select>
+	
+	<update id="updateById">
+		update board set title = #{title},
+						 content = #{content},
+						 author = #{author}
+						 where id = #{id}
+	</update>
+	
+	<delete id="deleteById">
+		delete from board where id = #{id}
+	</delete>
+	<select id="countAllRow" resultType="int">
+		select count(*) from board;
+	</select>
+</mapper>
